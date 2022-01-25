@@ -1,15 +1,17 @@
 ﻿@model IEnumerable<CursoMVC5Basic.Models.Aluno>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista de Alunos";
 }
 
-<h2>Index</h2>
+<h2>Lista de Alunos</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<div>
+    <a href="@Url.Action("Create")" class="btn btn-primary">Criar Novo Aluno</a>
+    <br><br>
+</div>
+
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nome)
@@ -47,9 +49,9 @@
             @Html.DisplayFor(modelItem => item.Ativo)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            <a href="@Url.Action("Edit", "Alunos", new { id=item.Id })" class="btn btn-primary">Editar</a>
+            <a href="@Url.Action("Details", "Alunos", new { id=item.Id })" class="btn btn-primary">Detalhes</a>
+            <a href="@Url.Action("Delete", "Alunos", new { id=item.Id })" class="btn btn-primary">Deletar</a>
         </td>
     </tr>
 }
