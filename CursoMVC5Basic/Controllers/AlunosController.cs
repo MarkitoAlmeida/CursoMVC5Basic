@@ -11,11 +11,13 @@ using CursoMVC5Basic.Models;
 
 namespace CursoMVC5Basic.Controllers
 {
+    [Authorize]
     public class AlunosController : Controller
     {
         private readonly ApplicationDbContext context = new ApplicationDbContext();
 
         [HttpGet]
+        [OutputCache(Duration = 60)] //utilizado principalmente para páginas que os dados não podem ser modificados.
         [Route("listar-alunos")]
         public async Task<ActionResult> Index()
         {
@@ -45,6 +47,7 @@ namespace CursoMVC5Basic.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [Route("novo-aluno")]
+        [HandleError(ExceptionType = typeof(NullReferenceException), View = "Erro")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Nome,Email,CPF,DataMatricula,Ativo")] Aluno aluno)
         {
