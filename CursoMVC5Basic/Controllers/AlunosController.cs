@@ -52,6 +52,11 @@ namespace CursoMVC5Basic.Controllers
             {
                 context.Alunos.Add(aluno);
                 await context.SaveChangesAsync();
+
+                //Usado principalmente quando precisa passar um estado de uma controller para outra e depois para uma view.
+                //Enquanto o TempData não é lido, o estado permanece, mas depois de lido ele se perde.
+                TempData["Mensagem"] = "Aluno cadastrado com sucesso.";
+
                 return RedirectToAction("Index");
             }
 
@@ -66,6 +71,9 @@ namespace CursoMVC5Basic.Controllers
 
             if (aluno == null)
                 return HttpNotFound();
+
+            //Usado quando passa de uma Controller direto para uma View
+            ViewBag.Mensagem = "Não esqueça que esta ação é irreversível.";
 
             return View(aluno);
         }

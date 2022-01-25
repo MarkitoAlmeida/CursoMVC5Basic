@@ -4,6 +4,14 @@
     ViewBag.Title = "Edit";
 }
 
+@if (!string.IsNullOrEmpty(ViewBag.Mensagem))
+{
+    <div class="">
+        <button type="button" class="close" data-dismiss="alert">X</button>
+        <h3>@ViewBag.Mensagem</h3>
+    </div>
+}
+
 <h2>Edit</h2>
 
 
